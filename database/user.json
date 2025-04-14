@@ -1,0 +1,10 @@
+[
+    {
+        "username": "suraj",
+        "email": "ksurajsingh270@gmail.com",
+        "password": "$2b$10$DiFtVK/Cf6r9SqznaSQ92upMLZEc4OTsgLhK16qr9Lw2CFwZId7rS",
+        "isVerified": true,
+        "verificationToken": "",
+        "refreshToken": ""
+    }
+]
