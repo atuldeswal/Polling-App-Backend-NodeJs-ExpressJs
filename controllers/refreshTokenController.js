@@ -17,13 +17,13 @@ const refreshToken = async(req, res) => {
         refreshToken,
         process.env.REFRESH_TOKEN_SECRET,
         (err, decoded) => {
-            if(err || foundUser.username !== decoded.username){
+            if(err || foundUser.email !== decoded.email){
                 return res.status(403).json({"error": "User not found"});
             }
             
             const accessToken = jwt.sign(
                 {
-                    "username": foundUser.username,
+                    "username": foundUser.email,
                     "email": foundUser.email,
                     "_id": foundUser._id,
                 },

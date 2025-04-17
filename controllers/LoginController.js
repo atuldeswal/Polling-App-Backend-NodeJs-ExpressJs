@@ -4,7 +4,6 @@ const User = require("../models/User");
 
 const loginUser = async(req, res) => {
     const {email,password} = req.body;
-    console.log(password);
     if(!email || !password){
         return res.status(400).json({"error": "Invalid details"});
     }
@@ -24,7 +23,7 @@ const loginUser = async(req, res) => {
     //JWT area
     const accessToken = jwt.sign(
         {
-            "username" : savedUser.username,
+            "username" : savedUser.email,
             "email" : savedUser.email,
             "_id" : savedUser._id,
         },
@@ -40,7 +39,7 @@ const loginUser = async(req, res) => {
     savedUser.refreshToken = refreshToken;
     const result = await savedUser.save();
 
-    res.cookie('jwt', refreshToken, {httpOnly: true,sameSite: 'None',secure: true, maxAge: 24 * 60 * 60 * 1000});
+    res.cookie('jwt', refreshToken, {httpOnly: true,sameSite: 'None',secure: false, maxAge: 24 * 60 * 60 * 1000});
     res.status(200).json({"accessToken": accessToken});
 }
 
